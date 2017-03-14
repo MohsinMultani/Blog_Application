@@ -8,6 +8,16 @@
 </head>
 <body>
 
+<div>
+  <% if session[:user_id] %>
+    <br />
+    <h2>hi,</h2>
+    <%= link_to 'Blog Lists', blogs_path %><br /> 
+    <br />
+    <%= button_to 'Logout', logout_path, :method => :delete %>
+  <% end %>
+</div>
+
 <%= yield %>
 
 </body>

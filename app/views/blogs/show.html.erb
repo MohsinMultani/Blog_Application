@@ -15,5 +15,7 @@
   <%= @blog.description %>
 </p>
 
-<%= link_to 'Edit', edit_blog_path(@blog) %> |
+<% if @user_id != @blog.user_id %>
+  <%= link_to 'Edit', edit_blog_path(@blog) %> |
+<% end %>
 <%= link_to 'Back', root_path %>

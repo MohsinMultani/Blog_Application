@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   validate :password_must_be_present
-
+  has_many :blogs
+  
   class << self
     def authenticate(name, password)
       if user = find_by_name(name)
