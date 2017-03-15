@@ -15,7 +15,16 @@
   <%= @blog.description %>
 </p>
 
-<% if @user_id != @blog.user_id %>
+<h2>comments</h2>
+<%= @blog.comments.each do |comment| %>
+  <p><%= comment.text %></p>
+  <p><%= time_ago_in_words comment.created_at %>
+<% end %>
+
+
+
+
+<% if @user_id == @blog.user_id %>
   <%= link_to 'Edit', edit_blog_path(@blog) %> |
 <% end %>
 <%= link_to 'Back', root_path %>

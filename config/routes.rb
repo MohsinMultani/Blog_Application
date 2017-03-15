@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  get 'comments/create'
+
+  get 'comments/destroy'
+
   get 'admin' => 'admin#index'
   
   controller :sessions do

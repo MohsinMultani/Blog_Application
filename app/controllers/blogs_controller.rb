@@ -1,12 +1,14 @@
 class BlogsController < ApplicationController
-  skip_before_filter :authorize
+  skip_before_action :authorize, only: [:index, :show]
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
   # GET /blogs
   # GET /blogs.json
   def index
     @blogs = Blog.all
-    @user_id = current_user.id
+    if current_user
+      @user_id = current_user.id
+    end
   end
 
   # GET /blogs/1
