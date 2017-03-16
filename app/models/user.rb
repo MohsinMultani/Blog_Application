@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   validate :password_must_be_present
   has_many :blogs
+  has_many :comments
   
   class << self
     def authenticate(name, password)

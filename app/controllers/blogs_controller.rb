@@ -14,6 +14,9 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
+    if current_user
+      @user_id = current_user.id
+    end
   end
 
   # GET /blogs/new

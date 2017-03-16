@@ -21,7 +21,10 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
 
   resources :users
-  resources :blogs
+  resources :blogs do
+    resources :comments
+  end
+  
 
   root :to => 'blogs#index'
 
