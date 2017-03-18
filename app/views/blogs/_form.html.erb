@@ -27,3 +27,9 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+
+<%= simple_form_for @blog, remote: true do |f|   %>
+  <%= f.input  :description                      %>
+  <%= f.button :submit                           %>
+<% end %>
