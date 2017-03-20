@@ -3,7 +3,7 @@
   <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
 
-  <div id="error_explanation" >
+  <div id="error_explanation" class="form-group">
     <h2><%= pluralize(@user.errors.count, "error") %>
       prohibited this user from being saved:</h2>
       <ul>
@@ -38,7 +38,7 @@
       </div>
       
       <div>
-        <%= f.submit %>
+        <%= f.submit, class:"btn btn-default" %>
       </div>
   </fieldset>
 <% end %>

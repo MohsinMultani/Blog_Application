@@ -17,16 +17,16 @@
 <hr align="left" width="10%">
 
 <div id="task-form">
-  
+  <div>Helllo<%= user_signed_in? %></div>
   <h2>comments</h2>
 
   <% @blog.comments.each do |comment| %>
     <p><%= comment.text %></p>
     <p><%= time_ago_in_words comment.created_at %>
     <hr align="left" width="30%">
-    <% if session[:user_id] %>
+    <% if user_signed_in? %>
 
-      <% if @user_id == comment.user_id %>
+      <% if current_user.id == comment.user_id %>
         <p><%= link_to "Delete", [@blog, comment], remote: true, method: :Delete, data: {:confirm => "Are You Sure?"} %></p>
       <% end %>
 
@@ -36,10 +36,10 @@
 
 
 
-<% if session[:user_id] %>
+<% if user_signed_in? %>
   <%= form_for [@blog,@blog.comments.build], remote: true do |f| %>
     <p><%= f.text_area :text, :size => '40*10' %></p>
-    <p><%= f.submit "Post comment", remote: true %></p>
+    <p><%= f.submit "Post comment", remote: true, class:"btn btn-default"%></p>
   <% end %>
 <% end %>
 

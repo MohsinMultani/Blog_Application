@@ -1,30 +1,29 @@
 Rails.application.routes.draw do
   
+ devise_for :users
+  
   get 'comments/create'
 
   get 'comments/destroy'
 
-  get 'admin' => 'admin#index'
+  #get 'admin' => 'admin#index'
   
-  controller :sessions do
-    get 'login' => :new
-    post 'login' => :create
-    delete 'logout' => :destroy
-  end
+  #devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout'}
+
+  #devise_scope :user
 
   get 'admin/index'
 
-  get 'sessions/new'
+  #get 'sessions/new'
 
-  get 'sessions/create'
+  #get 'sessions/create'
 
-  get 'sessions/destroy'
+  #get 'sessions/destroy'
 
   resources :users
   resources :blogs do
     resources :comments
-  end
-  
+  end 
 
   root :to => 'blogs#index'
 
