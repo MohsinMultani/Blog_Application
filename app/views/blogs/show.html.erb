@@ -1,47 +1,55 @@
 <p id="notice"><%= notice %></p>
 
+  <%= image_tag @blog.image.url(:thumb) %>
+
 <p>
   <h2><strong>Title:</strong></h2>
   <h3><%= @blog.title %></h1>
 </p>
-<hr align="left" width="10%" >
+
 <p>
   <h2><strong>Auther:</strong></h2>
   <h4><%= @blog.auther %></h4>
 </p>
-<hr align="left" width="10%">
+
 <p>
   <h2><strong>Description:</strong></h2>
   <%= @blog.description %>
 </p>
-<hr align="left" width="10%">
 
-<div id="task-form">
-  <div>Helllo<%= user_signed_in? %></div>
-  <h2>comments</h2>
+<h2>comments</h2>
 
+<div id="tasks">
   <% @blog.comments.each do |comment| %>
+    <hr>
+    <%= image_tag comment.user.profile_image.url(:thumb), height: '30', width: '30' %>
+    <%= comment.user.email %>
+
     <p><%= comment.text %></p>
     <p><%= time_ago_in_words comment.created_at %>
-    <hr align="left" width="30%">
-    <% if user_signed_in? %>
+    <br>
 
+    <% if user_signed_in? %>
+    
       <% if current_user.id == comment.user_id %>
         <p><%= link_to "Delete", [@blog, comment], remote: true, method: :Delete, data: {:confirm => "Are You Sure?"} %></p>
+        
       <% end %>
-
+      <br>
     <% end %>
   <% end %>
+
 </div>
 
 
-
-<% if user_signed_in? %>
-  <%= form_for [@blog,@blog.comments.build], remote: true do |f| %>
-    <p><%= f.text_area :text, :size => '40*10' %></p>
-    <p><%= f.submit "Post comment", remote: true, class:"btn btn-default"%></p>
+<div id="task-form">
+  <% if user_signed_in? %>
+    <%= form_for [@blog,@blog.comments.build], remote: true do |f| %>
+      <p><%= f.text_area :text, :size => '40*10' %></p>
+      <p><%= f.submit "Post comment", remote: true, class:"btn btn-default"%></p>
+    <% end %>
   <% end %>
-<% end %>
+</div>
 
 <% if @user_id == @blog.user_id %>
   <%= link_to 'Edit', edit_blog_path(@blog) %> |

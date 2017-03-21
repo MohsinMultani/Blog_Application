@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "responders"
 
 gem 'devise'
+
+gem "rolify"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -40,6 +42,7 @@ group :development, :test do
   gem 'byebug'
   #gem 'pry-rails'
   #gem 'pry-debugger'
+  gem "paperclip", "~> 5.0.0"
 end
 
 
