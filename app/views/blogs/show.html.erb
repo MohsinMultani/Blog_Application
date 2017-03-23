@@ -29,14 +29,11 @@
     <p><%= time_ago_in_words comment.created_at %>
     <br>
 
-    <% if user_signed_in? %>
-    
-      <% if current_user.id == comment.user_id %>
-        <p><%= link_to "Delete", [@blog, comment], remote: true, method: :Delete, data: {:confirm => "Are You Sure?"} %></p>
-        
-      <% end %>
-      <br>
+    <% if can? :destroy, comment %>
+        <p><%= link_to "Delete", [@blog, comment], remote: true, method: :Delete, data: {:confirm => "Are You Sure?"} %></p>  
     <% end %>
+
+
   <% end %>
 
 </div>
@@ -51,8 +48,9 @@
   <% end %>
 </div>
 
-<% if @user_id == @blog.user_id %>
+<% if can? :update, @blog %>
   <%= link_to 'Edit', edit_blog_path(@blog) %> |
 <% end %>
 
 <%= link_to 'Back', root_path %>
+

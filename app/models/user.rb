@@ -10,4 +10,11 @@ class User < ActiveRecord::Base
 
   has_attached_file :profile_image, styles: { medium: "300x300>", thumb: "50x50>" }, default_url: "/assets/image.jpg"
   validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\z/
+
+  after_create :assign_default_role
+
+  def assign_default_role
+    self.add_role(:newuser) if self.roles.blank?
+  end
+    
 end

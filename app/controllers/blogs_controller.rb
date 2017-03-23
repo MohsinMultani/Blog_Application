@@ -2,7 +2,9 @@ class BlogsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   respond_to :html, :js
+  
 
+  load_and_authorize_resource
   # GET /blogs
   # GET /blogs.json
   def index
