@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+gem 'mysql'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -26,6 +27,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "responders"
 
 gem 'devise'
+
+gem "rolify"
+
+gem 'cancancan'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -40,6 +45,7 @@ group :development, :test do
   gem 'byebug'
   #gem 'pry-rails'
   #gem 'pry-debugger'
+  gem "paperclip", "~> 5.0.0"
 end
 
 

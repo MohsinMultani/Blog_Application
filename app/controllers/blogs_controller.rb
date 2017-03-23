@@ -2,7 +2,9 @@ class BlogsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   respond_to :html, :js
+  
 
+  load_and_authorize_resource
   # GET /blogs
   # GET /blogs.json
   def index
@@ -78,6 +80,6 @@ class BlogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
-      params.require(:blog).permit(:title, :auther, :description)
+      params.require(:blog).permit(:title, :auther, :description, :image)
     end
 end
