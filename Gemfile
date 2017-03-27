@@ -31,6 +31,8 @@ gem 'devise'
 gem "rolify"
 
 gem 'cancancan'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -46,6 +48,8 @@ group :development, :test do
   #gem 'pry-rails'
   #gem 'pry-debugger'
   gem "paperclip", "~> 5.0.0"
+
+  gem "letter_opener"
 end
 
 

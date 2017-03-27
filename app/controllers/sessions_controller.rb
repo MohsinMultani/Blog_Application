@@ -6,8 +6,12 @@ class SessionsController < ApplicationController
 
   def create
     if user = User.authenticate(params[:name], params[:password])
-      session[:user_id] = user.id
-      redirect_to blogs_url
+        if user.email.confirmed 
+          session[:user_id] = user.id
+          redirect_to blogs_url
+         else
+          flash[:error] = 'please activate your Account.'
+        end
     else
       redirect_to login_url, :alert => "Invalid user/password combination"
     end

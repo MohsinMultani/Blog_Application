@@ -20,7 +20,12 @@ Rails.application.routes.draw do
 
   #get 'sessions/destroy'
 
-  resources :users
+  resources :users do
+    member do
+      get :confirm_email
+    end
+  end
+  
   resources :blogs do
     resources :comments
   end 
