@@ -30,7 +30,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(users_url, :notice => "User #{@user.name} was successfully created.") }
+        UserMailer.registration_confirmation(@user).deliver
+        format.html { redirect_to(users_url, :notice => "User #{@user.name} was successfully created! Please confirm your email address.") }
         #format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -39,6 +40,19 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def cinfirm_email
+    user = User.find_by_confirm_token(params[:id])
+    if user
+      user.email_activate
+      flash[:succes] = 'welcome to my Blog App. Your account has been confirmed'
+      redirect_to root_url
+    else
+      flash[:error] = 'Error! User does not exist..!'
+      redirect_to root_url
+    end
+  end
+
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json

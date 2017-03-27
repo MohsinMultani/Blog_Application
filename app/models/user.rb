@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :blogs
   has_many :comments
@@ -12,9 +12,24 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\z/
 
   after_create :assign_default_role
+  before_create :confirmmation_token
+
+  def email_activate
+    self.email_confirmed = true
+    self.confirm_token = nil
+    save!(:validate => false)
+  end
 
   def assign_default_role
     self.add_role(:newuser) if self.roles.blank?
   end
     
+  private
+
+  def confirmmation_token
+    if self.confirm_token.blank?
+      self.confirm_token = SecureRandom.urlsafe_base64.to_s
+    end
+  end
+
 end
