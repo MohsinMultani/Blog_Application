@@ -37,6 +37,11 @@ gem 'rails_admin', '~> 1.1.1'
 gem 'execjs'
 
 gem 'therubyracer'
+
+gem 'omniauth-facebook'
+
+gem 'omniauth-oauth2', '~> 1.3.1'
+#gem 'omniauth-facebook', '1.4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

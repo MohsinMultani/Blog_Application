@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
+  def new_session_path(scope)
+    new_user_session_path
+  end
+
 end
 
 
